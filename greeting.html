@@ -24,6 +24,10 @@
 
     <script type="text/javascript">
 $(document).ready(function(){
+            // <!-- 공통 html 연결 -->
+            $("#top").load("header.html");  // 원하는 파일 경로를 삽입하면 된다   
+            $("footer").load("footer.html"); 
+
             // 목록 항목의 p와 a를 둘러싸시오
             // each()는 앞요소 갯수만큼 순차적으로 실행하시오 
             $("#product ul.list li").each(function(){
@@ -405,13 +409,7 @@ $(document).ready(function(){
     });
 </script>
 
-    <!-- 공통 html 연결 -->
-    <script type="text/javascript">   
-        $(document).ready( function() {
-        $("#top").load("header.html");  // 원하는 파일 경로를 삽입하면 된다   
-        $("footer").load("footer.html");     
-        });
-    </script>
+
 
 </head>
 <body>

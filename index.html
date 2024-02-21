@@ -25,7 +25,11 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
-           // 목록항목의 p와 a를 둘러싸시오
+            // 공통 html 연결
+            $("#top").load("header.html");  // 원하는 파일 경로를 삽입하면 된다   
+            $("footer").load("footer.html");    
+           
+            // 목록항목의 p와 a를 둘러싸시오
            $("#product ul.list li").each(function(){// each()는 앞요소갯수만큼 순차적으로 실행하시오; 
                 $(this).children("p,a").wrapAll("<div class='wtext'></div>"); 
                 // wrapAll('<태그></태그');앞요소를 둘러싸시오(괄호안의 태그로)
@@ -368,13 +372,6 @@
         });
     </script>		
 
-    <!-- 공통 html 연결 -->
-     <script type="text/javascript">   
-        $(document).ready( function() {
-        $("#top").load("header.html");  // 원하는 파일 경로를 삽입하면 된다   
-        $("footer").load("footer.html");     
-        });
-    </script>
 
 </head>
 <body>
