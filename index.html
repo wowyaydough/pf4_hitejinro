@@ -44,7 +44,35 @@ $(document).ready(function(){
                 $(this).children(".wtext").stop().fadeOut();
 
             });
-        
+            
+
+            // wgnb hover 슬라이드 다운
+            var wsubN;
+            $("header .wrap nav ul.gnb li a").hover(
+                function(){
+                    $("header .wrap nav .wgnb").stop().slideDown();
+                    //wsub를 보이게 하시오
+                    wsubN=$(this).parent().index()+1;//마우스 올린 대상의 부모의 순번을 가져와서 +1 더해서 넣어라
+                    $("header .wrap nav .wgnb .wsub:nth-child("+wsubN+")").fadeIn();
+                    $("header .wrap nav .wgnb .wsub:not(:nth-child("+wsubN+"))").fadeOut();               
+                });
+            // mouseleave 시  슬라이드 업
+            $("header .wrap nav ul.gnb li a").mouseleave(function(){
+                $("header .wrap nav .wgnb").stop().slideUp();              
+            });
+
+            // h1요소에 마우스 진입하면 (wgnb가 슬라이드 업)
+            $("header .wrap nav h1").mouseenter(function(){
+                $("header .wrap nav .wgnb").slideUp();
+            });
+            
+            // top 버튼 클릭하면 실행하시오(문서를 애니메이트하시오)
+            $("footer .btop").click(function(){
+                $("html,body").animate({scrollTop:0},1000);
+            });
+
+
+
 /* 반응형에 따른 요소 제어 (보이기) */
             // 모바일시 brand 제목을 헤더로 옮기기
             if($(window).width()<=1200){
@@ -70,7 +98,7 @@ $(document).ready(function(){
                     // 해석 : 변수에 1을 넣어라
 
                     $("div#subtitle .wrap img").each(function(){
-                        $("div#subtitle .wrap img:nth-child("+n+")").attr("src","img/m/mtitle0"+n+".jpg");
+                        $("div#subtitle .wrap img:nth-child("+n+")").attr("src","img/m/mtitle"+n+".jpg");
                         // 문자열과 변수 연결"문자열+변수"
                         n++; // n에 들어있는 값에 1씩 증가
                     });
@@ -122,7 +150,7 @@ $(document).ready(function(){
                                 */
                                 var n=1;
                                 $("div#subtitle .wrap img").each(function(){
-                                    $("div#subtitle .wrap img:nth-child("+n+")").attr("src","img/m/mtitle0"+n+".jpg");
+                                    $("div#subtitle .wrap img:nth-child("+n+")").attr("src","img/m/mtitle"+n+".jpg");
                                     n++;
                                 });
 
@@ -152,7 +180,7 @@ $(document).ready(function(){
                                 });
                                 
                                 }
-                    });
+            });
 
                     /* 햄버거 버튼 클릭 - 대메뉴 보이기 */
                     // 햄버거를 클릭하면 실행하시오()
@@ -163,6 +191,8 @@ $(document).ready(function(){
                         $(".close").remove();
                         //x버튼 으로 쓸 태그를 추가하시오
                         $("header .wrap nav .wgnb").prepend('<a href="" class="close block"></a>');
+                        // 햄버거 누르면 브랜드 슬라이드 업
+                        $(".wide").slideUp();
 
                         //x버튼 닫기 기능 추가 
                         $(".close").click(function(){
@@ -178,11 +208,11 @@ $(document).ready(function(){
                     });
 
                     //모바일 대메뉴 클릭하면 서브메뉴 펼치게
-                    $(".submenu").click(function(){
+                    $(".wgnb h2").click(function(){
                             $(this).toggleClass("currenH2");
                             $(this).parent().siblings().children("h2").removeClass("currenH2");
                             $(this).next().slideToggle();
-                            $(this).parent().siblings().children("ul").slideUp();
+                            $(this).parent().siblings().children("ul.sub1").slideUp();
                             $("aside").removeClass("asideSliding");
                         });
                         
@@ -328,9 +358,9 @@ $(document).ready(function(){
         $("aside .wrap ul.list > li h3").hover(function(){
             if($(window).width()>1200){
                 $("aside").addClass("sliding");
-                $(this).parent().siblings().children("div").children("ul.listsub").hide().removeClass("wide");
+                $(this).parent().siblings().find("ul.listsub").hide().removeClass("wide");
                 $(this).next().children("ul.listsub").show().addClass("wide");
-                $(this).addClass("current");
+                $(this).addClass("current");// 노란표시
                 $(this).parent().siblings().children("h3").removeClass("current");
             }
             if($(window).width()<770){
@@ -367,6 +397,9 @@ $(document).ready(function(){
                 // 햄버거 닫기
                 $("header .wrap nav .wgnb").removeClass("wgnbShow");
 
+                // 햄버거 슬라이드 업
+                $("header .wrap nav .wgnb .wsub ul.sub1").slideUp();
+
             });
     });
 </script>
@@ -376,86 +409,7 @@ $(document).ready(function(){
 <body>
     
     <!-- 상단영역 -->
-   <header id="top">
-        <div class="wrap">
-            <nav>
-                <h1 class="h5">
-                    <a href="" class="a">하이트진로</a>
-                </h1>
-                <ul class="gnb">
-                    <li><a href="" class="a">COMPANY</a></li>
-                    <li><a href="" class="a">SOCIAL & MEDIA</a></li>
-                    <li><a href="" class="a">ESG</a></li>
-                    <li><a href="" class="a">CUSTOMER CENTER</a></li>
-                </ul>
-                <ul class="enb">
-                    <li><a href="" class="a">LOGIN</a></li>
-                    <li><a href="" class="a">JOIN</a></li>
-                    <li><a href="" class="a">RECRUIT</a></li>
-                    <li><a href="" class="a">LANGUAGE</a></li>
-                </ul>
-                <div class="wgnb hide">
-                    <div class="center">
-                        <div class="wsub">
-                            <h2 class="submenu hide">COMPANY</h2>
-                            <ul class="text-center">
-                                <li><a href="">회사개요</a></li>
-                                <li><a href="">CEO 인사말</a></li>
-                                <li><a href="">가치체계</a></li>
-                                <li><a href="">연구소</a></li>
-                                <li><a href="">관계사</a></li>
-                                <li><a href="">사업장</a></li>
-                            </ul>
-                        </div>
-                        <div class="wsub">
-                            <h2 class="submenu hide">제품소개</h2>
-                            <ul class="text-center">
-                                <li><a href="">제품정보</a></li>
-                                <li><a href="">주정</a></li>
-                                <li><a href="">석유화학</a></li>
-                                <li><a href="">Color Paste</a></li>
-                                <li><a href="">제품문의</a></li>
-                            </ul>
-                        </div>
-                        <div class="wsub">
-                            <h2 class="submenu hide">지속가능경영</h2>
-                            <ul class="text-center">
-                                <li><a href="">정도경영</a></li>
-                                <li><a href="">환경경영</a></li>
-                                <li><a href="">품질경영</a></li>
-                            </ul>
-                        </div>
-                        <div class="wsub">
-                            <h2 class="submenu hide">투자정보</h2>
-                            <ul class="text-center">
-                                <li><a href="">경영정보</a></li>
-                                <li><a href="">주가정보</a></li>
-                                <li><a href="">재무정보</a></li>
-                                <li><a href="">IR자료실</a></li>
-                            </ul>
-                        </div>
-                        <div class="wsub">
-                            <h2 class="submenu hide">홍보센터</h2>
-                            <ul class="text-center">
-                                <li><a href="">KAI소식</a></li>
-                                <li><a href="">CI소개</a></li>
-                                <li><a href="">사회공헌</a></li>
-                            </ul>
-                        </div>
-                        <div class="wsub">
-                            <h2 class="submenu hide">인재채용</h2>
-                            <ul class="text-center">
-                                <li><a href="">인사제도</a></li>
-                                <li><a href="">채용공고</a></li>
-                                <li><a href="">채용문의</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <a href="" class="ham hide">전체메뉴</a>
-            </nav>
-        </div>
-   </header>
+    <header id="top"></header>
    <!-- 타이틀영역 -->
    <div id="subtitle" class="height-full">
         <div class="titleani wrap height-full">
@@ -466,7 +420,7 @@ $(document).ready(function(){
             <img src="img/i5.png" alt="필라이트 포스터">
             <img src="img/i6.png" alt="일품진로 OAK43 포스터">
             <img src="img/i7.png" alt="일품진로 포스터">
-            <img src="img/i8.jpg" alt="진로1924 포스터">
+            <img src="img/i8.png" alt="진로1924 포스터">
             <img src="img/i9.png" alt="매화수 포스터">
             <img src="img/i10.png" alt="에스라이트 포스터">
         </div>
