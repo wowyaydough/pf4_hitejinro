@@ -3,6 +3,7 @@ div#subtitle {
 }
 div#subtitle .wrap {
   margin-bottom: 0px;
+  max-width: 100%;
 }
 div#subtitle button{
   z-index: 1;
