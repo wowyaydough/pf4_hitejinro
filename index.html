@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="img/favicon.jpg" type="image/x-icon">
-    <link rel="icon" href="img/favicon.jpg" type="image/x-icon">
-    <title>pf4-하이트진로</title>
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
+    <title>하이트진로</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,285 +18,260 @@
     <link rel="stylesheet" href="css/aside.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <!-- <script src="https://code.jquery.com/jquery-3.7.0.min.js" type="text/javascript"></script> -->
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
-
-   
-
+    <!-- 제이쿼리 연결 -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" type="text/javascript"></script>
+				
     <script type="text/javascript">
-        $(document).ready(function(){
-            // 공통 html 연결
-            $("#top").load("header.html");  // 원하는 파일 경로를 삽입하면 된다   
-            $("footer").load("footer.html");    
-           
-            // 목록항목의 p와 a를 둘러싸시오
-           $("#product ul.list li").each(function(){// each()는 앞요소갯수만큼 순차적으로 실행하시오; 
-                $(this).children("p,a").wrapAll("<div class='wtext'></div>"); 
-                // wrapAll('<태그></태그');앞요소를 둘러싸시오(괄호안의 태그로)
+$(document).ready(function(){
+            // 목록 항목의 p와 a를 둘러싸시오
+            // each()는 앞요소 갯수만큼 순차적으로 실행하시오 
+            $("#product ul.list li").each(function(){
+                $(this).children("p,a").wrapAll("<div class='wtext'></div>");
                 $(".wtext").hide();
-            });           
-            // 프로덕트 제품오버시 설명글 표시
-                //목록항목에 마우스올리면 실행하시오
-           $("#product ul.list li").hover(
-                function(){ //mouseenter
-                    // 마우스올린 li의 자식인 wtext를 fadeIn();하시오
-                    $(this).children(".wtext").stop().fadeIn();//fadeIn() 서서히 나타나게 하시오
-                    // 마우스올린 li의 자식인 wtext에 클래스를 붙여라(scaleX100)
-                    $(this).children(".wtext").addClass("scaleX100");
-                    // 마우스올린 li가 아닌 다른 형제요소들의 자식 wtext에 클래스를 없애라(scaleX100)
-                    $(this).siblings().children("wtext").removeClass("scaleX100");
+            }); 
+            //프로덕트 제품 오버시 설명글 표시
+            // 제품 항목에 마우스 올리면 실행하시오
+            $("#product ul.list li").hover(
+                function(){ // mouse_enter
+                //마우스 올린 li의 자식인 wtext를 fadeIn();하시오
+                $(this).children(".wtext").stop().fadeIn();
+                $(this).children(".wtext").addClass("scaleX100");
+            
+                //마우스 올린 li를 제외한 다른 형제들의 자식 wtext 에 클래스 삭제
+                $(this).siblings().children(".wtext").removeClass("scaleX100");
+            },
+                function(){                                 
+                $(this).children(".wtext").stop().fadeOut();
 
+            });
+            
 
-                },
-                function(){ //mouseleave
-                    $(this).children(".wtext").stop().fadeOut();//서서히 사라지게 하시오
-                    // 마우스올린 li의 자식인 wtext에 클래스를 없애라(scaleX100)
-                    $(this).children(".wtext").removeClass("scaleX100");
-                }
-           ); 
-           /* 반응형에 따른 요소제어(보이기) */
-           if($(window).width()<=1200){ // <= 작거나 같다(비교연산자) / $(window).width() 윈도우의 크기값을 가져와라
-                // 모바일시 brand제목을 헤더로 옮기기
-                $("aside .wrap h2").appendTo("header .wrap nav"); 
-                /* 타이틀이미지 모바일용으로 교체 */
-                //타이틀영역의 img태그의 속성값을 변경하시오
-                /* $("div#subtitle .wrap img[src='img/i1.jpg']").attr("src","img/m/m-title1.jpg");
-                $("div#subtitle .wrap img[src='img/i2.jpg']").attr("src","img/m/m-title2.jpg");
-                $("div#subtitle .wrap img[src='img/i3.jpg']").attr("src","img/m/m-title3.jpg");
-                $("div#subtitle .wrap img[src='img/i4.jpg']").attr("src","img/m/m-title4.jpg");
-                $("div#subtitle .wrap img[src='img/i5.jpg']").attr("src","img/m/m-title5.png");
-                $("div#subtitle .wrap img[src='img/i6.jpg']").attr("src","img/m/m-title6.png");
-                $("div#subtitle .wrap img[src='img/i7.jpg']").attr("src","img/m/m-title7.png");
-                $("div#subtitle .wrap img[src='img/i8.jpg']").attr("src","img/m/m-title8.jpg");
-                $("div#subtitle .wrap img[src='img/i9.jpg']").attr("src","img/m/m-title9.jpg");
-                $("div#subtitle .wrap img[src='img/i10.jpg']").attr("src","img/m/m-title10.png"); */
-
-                var n=1;  // 변수선언과 초기화
-                // 변수키워드 변수명=데이터; 변수키워드 var(변수:데이터를 담는 그릇,폴더) 
-                // 변수명 n , = 넣어라(대입연산자,부호,기호), 1은 숫자데이터
-                // 해석 : 변수 n에 1을 넣어라
-                $("div#subtitle .wrap img").each(function(){
-                    $("div#subtitle .wrap img:nth-child("+n+")").attr("src","img/m/m-title"+n+".jpg"); 
-                    // 문자열과 변수 연결: "문자열"+변수
-                    n++; // n에 들어있는 값을 1씩 증가시키시오
+            // wgnb hover 슬라이드 다운
+            var wsubN;
+            $("header .wrap nav ul.gnb li a").hover(
+                function(){
+                    $("header .wrap nav .wgnb").stop().slideDown();
+                    //wsub를 보이게 하시오
+                    wsubN=$(this).parent().index()+1;//마우스 올린 대상의 부모의 순번을 가져와서 +1 더해서 넣어라
+                    $("header .wrap nav .wgnb .wsub:nth-child("+wsubN+")").fadeIn();
+                    $("header .wrap nav .wgnb .wsub:not(:nth-child("+wsubN+"))").fadeOut();               
                 });
+            // mouseleave 시  슬라이드 업
+            $("header .wrap nav ul.gnb li a").mouseleave(function(){
+                $("header .wrap nav .wgnb").stop().slideUp();              
+            });
 
-                //어사이드의 img를 모바일용 이미지로 교체하기
-                /* $("aside .wrap ul.list > li ul.listsub li:nth-child(1) a img").attr("src","img/aside/1-1m.png");
-                $("aside .wrap ul.list > li ul.listsub li:nth-child(2) a img").attr("src","img/aside/1-2m.png");
-                $("aside .wrap ul.list > li ul.listsub li:nth-child(3) a img").attr("src","img/aside/1-3m.png");
-                $("aside .wrap ul.list > li ul.listsub li:nth-child(4) a img").attr("src","img/aside/1-4m.png");
-                $("aside .wrap ul.list > li ul.listsub li:nth-child(5) a img").attr("src","img/aside/1-5m.png"); */
+            // h1요소에 마우스 진입하면 (wgnb가 슬라이드 업)
+            $("header .wrap nav h1").mouseenter(function(){
+                $("header .wrap nav .wgnb").slideUp();
+            });
+            
+            // top 버튼 클릭하면 실행하시오(문서를 애니메이트하시오)
+            $("footer .btop").click(function(){
+                $("html,body").animate({scrollTop:0},1000);
+            });
 
-                var i=1;
+
+
+/* 반응형에 따른 요소 제어 (보이기) */
+            // 모바일시 brand 제목을 헤더로 옮기기
+            if($(window).width()<=1200){
+                $("aside .wrap h2").appendTo("header .wrap nav");
+
+                /* 타이틀이미지 모바일용으로 교체  */
+                     /*
+                    $("div#subtitle .wrap img[src='img/i1.png']").attr("src","img/m/mtitle01.jpg"); 
+                    $("div#subtitle .wrap img[src='img/i2.png']").attr("src","img/m/mtitle02.jpg");
+                    $("div#subtitle .wrap img[src='img/i3.png']").attr("src","img/m/mtitle03.jpg");          
+                    $("div#subtitle .wrap img[src='img/i4.png']").attr("src","img/m/mtitle04.jpg");
+                    $("div#subtitle .wrap img[src='img/i5.png']").attr("src","img/m/mtitle05.jpg");
+                    $("div#subtitle .wrap img[src='img/i6.png']").attr("src","img/m/mtitle06.jpg");
+                    $("div#subtitle .wrap img[src='img/i7.png']").attr("src","img/m/mtitle07.jpg");
+                    $("div#subtitle .wrap img[src='img/i8.jpg']").attr("src","img/m/mtitle08.jpg");
+                    $("div#subtitle .wrap img[src='img/i9.png']").attr("src","img/m/mtitle09.jpg");
+                    $("div#subtitle .wrap img[src='img/i10.png']").attr("src","img/m/mtitle10.jpg");
+                    */
+
+                    var n=1; 
+                    // 변수 키워드 변수명=데이터; 변수키워드 var(변수 : 데이터를 담는 그릇)
+                    // 변수명 n, = 널어라(대입 연산자,부호,기호), 1은 숫자 데이터
+                    // 해석 : 변수에 1을 넣어라
+
+                    $("div#subtitle .wrap img").each(function(){
+                        $("div#subtitle .wrap img:nth-child("+n+")").attr("src","img/m/mtitle"+n+".jpg");
+                        // 문자열과 변수 연결"문자열+변수"
+                        n++; // n에 들어있는 값에 1씩 증가
+                    });
+
+                    //어사이드의 img를 모바일용 이미지로 교체하기
+                    /*
+                    $("aside .wrap ul.list > li ul.listsub li:nth-child(1) a img").attr("src","img/aside/m_brand/m1-1.png");
+                    $("aside .wrap ul.list > li ul.listsub li:nth-child(2) a img").attr("src","img/aside/m_brand/m1-2.png");
+                    $("aside .wrap ul.list > li ul.listsub li:nth-child(3) a img").attr("src","img/aside/m_brand/m1-3.png");
+                    $("aside .wrap ul.list > li ul.listsub li:nth-child(4) a img").attr("src","img/aside/m_brand/m1-4.png");
+                    $("aside .wrap ul.list > li ul.listsub li:nth-child(5) a img").attr("src","img/aside/m_brand/m1-5.png");
+                    */
+
+                    var i=1;
                 var m=1;
 
                 $("aside .wrap ul.list > li").each(function(){
                     
                     $("aside .wrap ul.list > li:nth-child("+i+") ul.listsub li").each(function(){
-                        $("aside .wrap ul.list > li:nth-child("+i+") ul.listsub li:nth-child("+m+") a img").attr("src","img/aside/"+i+"-"+m+"m.png");
+                        $("aside .wrap ul.list > li:nth-child("+i+") ul.listsub li:nth-child("+m+") a img").attr("src","img/aside/m_brand/m"+i+"-"+m+".png");
                         m++;
                     });
                     i++;
                     m=1;
                 });
-                
-             
-
-
-
-            }
-           //윈도우창사이즈가 바뀌면 실행하시오
-           $(window).resize(function(){
-                if($(window).width()<=1200){
-                    $("aside .wrap h2").appendTo("header .wrap nav"); 
-                 /* 타이틀이미지 모바일용으로 교체 */
-                    //타이틀영역의 img태그의 속성값을 변경하시오
-                    /*
-                    $("div#subtitle .wrap img[src='img/i1.jpg']").attr("src","img/m/m-title1.jpg");
-                    $("div#subtitle .wrap img[src='img/i2.jpg']").attr("src","img/m/m-title2.jpg");
-                    $("div#subtitle .wrap img[src='img/i3.jpg']").attr("src","img/m/m-title3.jpg");
-                    $("div#subtitle .wrap img[src='img/i4.jpg']").attr("src","img/m/m-title4.jpg");
-                    $("div#subtitle .wrap img[src='img/i5.jpg']").attr("src","img/m/m-title5.png");
-                    $("div#subtitle .wrap img[src='img/i6.jpg']").attr("src","img/m/m-title6.png");
-                    $("div#subtitle .wrap img[src='img/i7.jpg']").attr("src","img/m/m-title7.png");
-                    $("div#subtitle .wrap img[src='img/i8.jpg']").attr("src","img/m/m-title8.jpg");
-                    $("div#subtitle .wrap img[src='img/i9.jpg']").attr("src","img/m/m-title9.jpg");
-                    $("div#subtitle .wrap img[src='img/i10.jpg']").attr("src","img/m/m-title10.png");
-                    */
-                    var n = 1;
-                    $("div#subtitle .wrap img").each(function(){
-                        $("div#subtitle .wrap img:nth-child("+n+")").attr("src","img/m/m-title"+n+".jpg");
-                        n++;
-                    });
                 }
-                if($(window).width()>1200){
-                    $("header .wrap nav>h2").prependTo("aside .wrap");
-                    /* 타이틀이미지 pc용으로 교체 */
-                    /* $("div#subtitle .wrap img[src='img/m/m-title1.jpg']").attr("src","img/i1.jpg");
-                    $("div#subtitle .wrap img[src='img/m/m-title2.jpg']").attr("src","img/i2.jpg");
-                    $("div#subtitle .wrap img[src='img/m/m-title3.jpg']").attr("src","img/i3.jpg");
-                    $("div#subtitle .wrap img[src='img/m/m-title4.jpg']").attr("src","img/i4.jpg");
-                    $("div#subtitle .wrap img[src='img/m/m-title5.png']").attr("src","img/i5.jpg");
-                    $("div#subtitle .wrap img[src='img/m/m-title6.png']").attr("src","img/i6.jpg");
-                    $("div#subtitle .wrap img[src='img/m/m-title7.png']").attr("src","img/i7.jpg");
-                    $("div#subtitle .wrap img[src='img/m/m-title8.jpg']").attr("src","img/i8.jpg");
-                    $("div#subtitle .wrap img[src='img/m/m-title9.jpg']").attr("src","img/i9.jpg");
-                    $("div#subtitle .wrap img[src='img/m/m-title10.png']").attr("src","img/i10.jpg"); */
-                    var n=1; // 변수(그릇) n에 1을 넣으시오
-                    $("div#subtitle .wrap img").each(function(){
-                        $("div#subtitle .wrap img:nth-child("+n+")").attr("src","img/i"+n+".jpg");
-                        n++; //n의 값을 1씩 증가시키시오.
-                    });
 
-                }
-           });
-           /*
-            / 다른 요소를 잘라내서 원하는 요소안에 넣기
-                잘라내올 요소.appendTo("붙여넣을 요소");
+                   
+       
+         
+            // 윈도우 창 사이즈 바뀌면 실행하시오
+            $(window).resize(function(){ 
+                            if($(window).width()<1200){
+                                $("aside .wrap h2").appendTo("header .wrap nav");
 
-                / 조건문 if
-                구문형식 if(조건){조건이 맞으면 실행될 구문}
-                /$(window) : 브라우저창
-                / width();너비를 가져오시오
-                / < : 작다면
+                                        /* 타이틀이미지 모바일용으로 교체  */
+                                // 타이틀영역의 img태그의 속성값을 변경하시오
+                                /*
+                                $("div#subtitle .wrap img[src='img/i1.png']").attr("src","img/m/mtitle01.jpg"); 
+                                $("div#subtitle .wrap img[src='img/i2.png']").attr("src","img/m/mtitle02.jpg");
+                                $("div#subtitle .wrap img[src='img/i3.png']").attr("src","img/m/mtitle03.jpg");          
+                                $("div#subtitle .wrap img[src='img/i4.png']").attr("src","img/m/mtitle04.jpg");
+                                $("div#subtitle .wrap img[src='img/i5.png']").attr("src","img/m/mtitle05.jpg");
+                                $("div#subtitle .wrap img[src='img/i6.png']").attr("src","img/m/mtitle06.jpg");
+                                $("div#subtitle .wrap img[src='img/i7.png']").attr("src","img/m/mtitle07.jpg");
+                                $("div#subtitle .wrap img[src='img/i8.jpg']").attr("src","img/m/mtitle08.jpg");
+                                $("div#subtitle .wrap img[src='img/i9.png']").attr("src","img/m/mtitle09.jpg");
+                                $("div#subtitle .wrap img[src='img/i10.png']").attr("src","img/m/mtitle10.jpg");
+                                */
+                                var n=1;
+                                $("div#subtitle .wrap img").each(function(){
+                                    $("div#subtitle .wrap img:nth-child("+n+")").attr("src","img/m/mtitle"+n+".jpg");
+                                    n++;
+                                });
 
-                if($(window).width()<769){ // 창크기가 769미만이라면 
-                    $("aside .wrap h2").appendTo("header .wrap nav");  //  h2를 ..로 옮겨라
-                }
-           */
-          
-        /* 햄버거버튼 클릭 - 대메뉴 보이기 */
-            // 햄버거를 클릭하면 실행하시오()
-            $(".ham").click(function(){
-                //w대메뉴에 클래스를 붙이시오
-                $("header .wrap nav .wgnb").addClass("wgnbShow");
 
-                //close를 지우기
-                $(".close").remove();
+                            }
+                            if($(window).width()>=1200){
+                                $("header .wrap nav>h2").prependTo("aside .wrap");
 
-                //x표시용으로 쓸 태그를 추가하시오
-                $("header .wrap nav .wgnb").prepend('<a href="" class="close block"></a>'); 
-
-                //대메뉴 닫기
-                $(".close").click(function(){
-                    $("header .wrap nav .wgnb").removeClass("wgnbShow");
-                    return false;
-                });
-
-                //aside를 닫기
-                $("aside").removeClass("asideSliding");
-                return false;
+                                            /* 타이틀이미지 PC용으로 교체  */
+                                // 타이틀영역의 img태그의 속성값을 변경하시오
+                                /*
+                                $("div#subtitle .wrap img[src='img/m/mtitle01.jpg']").attr("src","img/i1.png"); 
+                                $("div#subtitle .wrap img[src='img/m/mtitle02.jpg']").attr("src","img/i2.png");
+                                $("div#subtitle .wrap img[src='img/m/mtitle03.jpg']").attr("src","img/i3.png");          
+                                $("div#subtitle .wrap img[src='img/m/mtitle04.jpg']").attr("src","img/i4.png");
+                                $("div#subtitle .wrap img[src='img/m/mtitle05.jpg']").attr("src","img/i5.png");
+                                $("div#subtitle .wrap img[src='img/m/mtitle06.jpg']").attr("src","img/i6.png");
+                                $("div#subtitle .wrap img[src='img/m/mtitle07.jpg']").attr("src","img/i7.png");
+                                $("div#subtitle .wrap img[src='img/m/mtitle08.jpg']").attr("src","img/i8.jpg");
+                                $("div#subtitle .wrap img[src='img/m/mtitle09.jpg']").attr("src","img/i9.png");
+                                $("div#subtitle .wrap img[src='img/m/mtitle10.jpg']").attr("src","img/i10.png");
+                                */
+                               var n=1;
+                                $("div#subtitle .wrap img").each(function(){
+                                    $("div#subtitle .wrap img:nth-child("+n+")").attr("src","img/i"+n+".png");
+                                    n++;
+                                });
+                                
+                                }
             });
-        
-        //모바일 대메뉴클릭하면 서브메뉴 펼치게
-            $("header .wrap nav .wgnb h2").click(function(){
-                $(this).toggleClass("currenH2");
-                $(this).parent().siblings().children("h2").removeClass("currenH2");
-                $(this).next().slideToggle();
-                $(this).parent().siblings().children("ul.sub1").slideUp();
-            });
-        
-            var headerH=$("header").height();
-        
-            // 스크롤이벤트    
-            $(window).scroll(function(){
-                // 헤더 애니
-                if($(window).scrollTop()>$("header").height()){ //윈도우의 scrollTop위치값이 ...보다 크다면
-                    //body에 스타일을 지정하시오(padding-top값에 header높이값을 지정)
-                    $("body").css("padding-top",headerH);
-                    //header에 클래스를 붙이시오
-                    $("header").addClass("headerFix");
-                }else{
-                    $("body").css("padding-top",0);
-                    //header에 클래스를 붙이시오
-                    $("header").removeClass("headerFix");
+
+                    /* 햄버거 버튼 클릭 - 대메뉴 보이기 */
+                    // 햄버거를 클릭하면 실행하시오()
+                    $(".ham").click(function(){
+                        // w대메뉴에 클래스를 붙이시오
+                        $("header .wrap nav .wgnb").addClass("wgnbShow");
+                        //close를 지우기
+                        $(".close").remove();
+                        //x버튼 으로 쓸 태그를 추가하시오
+                        $("header .wrap nav .wgnb").prepend('<a href="" class="close block"></a>');
+                        // 햄버거 누르면 브랜드 슬라이드 업
+                        $(".wide").slideUp();
+
+                        //x버튼 닫기 기능 추가 
+                        $(".close").click(function(){
+                            $("header .wrap nav .wgnb").removeClass("wgnbShow");
+                            return false;  
+                        });
+
+                        // 브랜드 닫기
+                        $("aside").removeClass("asideSliding");
+
+                        // 새로고침 방지
+                        return false;
+                    });
+
+                    //모바일 대메뉴 클릭하면 서브메뉴 펼치게
+                    $(".wgnb h2").click(function(){
+                            $(this).toggleClass("currenH2");
+                            $(this).parent().siblings().children("h2").removeClass("currenH2");
+                            $(this).next().slideToggle();
+                            $(this).parent().siblings().children("ul.sub1").slideUp();
+                            $("aside").removeClass("asideSliding");
+                        });
+                        
+
+            var headerH=$("header").height();        
+     
+        /*    스크롤 이벤트   */
+             $(window).scroll(function(){
+                // 윈도우에 scrollTop위치값이 ..보다 크다면
+                //header의 높이값을 가져오시오
+                if($(window).scrollTop()>$("header").height()){  
+
+                        //body에 스타일을 지정하시오
+                        $("body").css("padding-top",headerH); 
+                        //header에 클래스를 붙이시오
+                        $("header").addClass("headerFix");
+                        // var 로 값을 지정하면 도큐먼트 열릴때 한번만 값을 가져오고(고정)
+                        // (스크롤)이벤트는 스크롤할때마다 0값을 가져온다.(갱신)
                 }
-                // 사이드 애니
+               else{
+                        $("body").css("padding-top",0); 
+                        //header에 클래스를 붙이시오
+                        $("header").removeClass("headerFix");
+                    }
+
+                 // 사이드 애니 + footer top
                 if($(window).scrollTop()>$("#subtitle").height()+40){
-                    //aside에 클래스를 붙이시오(slideHide)
-                    $("aside").addClass("slideHide");
-
-                    // 탑 애니
-                    //탑요소에 클래스를 붙이시오(topFix)
-                    $("footer .btop").addClass("topFix");
-                }else{ // 위 조건이 안맞으면(그렇치 않으면)
-                    $("aside").removeClass("slideHide");//aside태그에 클래스를 없애시오
-                    $("footer .btop").removeClass("topFix"); // 탑버튼에 클래스를 없애시오
+                         $("aside").addClass("slideHide");
+                         $("footer .btop").addClass("topFix");
                 }
-                
-                // 하단 탑버튼 페이지와 같이 이동
-                if($(window).scrollTop()>$("footer").offset().top-$(window).height()){
-                    $("footer .btop").removeClass("topFix").css("opacity",1);
+                else{
+                         $("aside").removeClass("slideHide");
+                         $("footer .btop").removeClass("topFix");
                 }
 
                
-            });  
-        
-        // 대메뉴오버시 서브를 슬라이드 다운
-            var wsubN;
-            $("header .wrap nav ul.gnb li a").hover(
-                function(){
-                    $("header .wrap nav .wgnb").stop().slideDown();
-                    //제이쿼리 slideDown()시 css속성에 transition이 있으면 제대로  펼쳐지지 않는다... 
-                    //wsub를 보이게 하시오
-                    wsubN=$(this).parent().index()+1;//마우스올린 대상의 부모의 순번을 가져와서 +1더해서 넣어라
-                    $("header .wrap nav .wgnb .wsub:nth-child("+wsubN+")").fadeIn();
-                    $("header .wrap nav .wgnb .wsub:not(:nth-child("+wsubN+"))").fadeOut();
+               
+                // 하단 탑 버튼 페이지와 같이 이동
+                if($(window).scrollTop()>$("footer").offset().top-$(window).height()){
+                    $("footer .btop").removeClass("topFix").css("opacity",1);
                 }
-            );   
-              
-        // 서브wgnb영역을 벗어나면 실행하시오(wgnb가 슬라이드업)
-            $("header .wrap nav .wgnb").mouseleave(function(){
-                $(this).slideUp();
-            });
+                
 
-        // h1요소에 마우스진입하면 (wgnb가 슬라이드업)
-        $("header .wrap nav h1").mouseenter(function(){
-            $("header .wrap nav .wgnb").slideUp();
-        });
+             });     
 
-        // top버튼 클릭하면 실행하시오(문서를 애니메이트하시오)
-            $("footer .btop").click(function(){
-                $("html,body").animate({scrollTop:0},1000);//문서스크롤 애니
-            });
+           
+ console.log($("footer").offset());
 
-        });
-    </script> 
+            
+});             
+        </script> 
+
     <!-- slick -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-	<script type="text/javascript">
-        $(document).ready(function(){
-            $('.snsSlide').slick({
-                infinite: true,
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 2000,
-                speed:1000,
-                dots:true,
-                arrows:true,
-                responsive:[
-                    {
-                    breakpoint: 769,
-                    settings: {
-                        infinite: true,
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                        autoplay: true,
-                        autoplaySpeed: 2000,
-                        speed:1000,
-                        dots:true,
-                        arrows:false,
-                        centerMode: true,
-                        centerPadding: '20px'
-                    }
-                    }
-                ]   
-            });
-
+   <script type="text/javascript">
+    $(document).ready(
+        function(){
             $('.titleani').slick({
                 infinite: true,
                 slidesToShow: 1,
@@ -306,97 +281,348 @@
                 speed:4000,
                 dots:true,
                 arrows:true,
-                responsive:[
+                responsive: [
+                {
+                    breakpoint: 1201,
+                    settings: {
+                        infinite: true,
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 1000,
+                        speed:1000,
+                        dots:true,
+                        arrows:false
+                    }},
                     {
-                        breakpoint: 1201,
-                        settings: {
-                            infinite: true,
-                            slidesToShow: 2,
-                            slidesToScroll: 1,
-                            autoplay: true,
-                            autoplaySpeed: 2000,
-                            speed:1000,
-                            dots:true,
-                            arrows:false
-                        }
-                    },
-                    {
-                        breakpoint: 769,
-                        settings: {
-                            infinite: true,
-                            slidesToShow: 1,
-                            slidesToScroll: 1,
-                            autoplay: true,
-                            autoplaySpeed: 2000,
-                            speed:1000,
-                            dots:true,
-                            arrows:false
-                        }
-                    }
-                ]    
-            });
-        });
-    </script>
-    <!-- aside애니 -->
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("aside .wrap ul.list > li h3").hover(function(){
-                if($(window).width()>1200){
-                    $("aside").addClass("sliding");
-                    $(this).next().find(".listsub").show();
-                    $(this).parent().siblings().find(".listsub").hide();
-                    $(this).addClass("current");//노란표시
-                    $(this).next().find(".listsub").addClass("wide");
-                    $(this).parent().siblings().children("h3").removeClass("current");
-                    $(this).parent().siblings().find(".listsub").hide().removeClass("wide");
-                }
-            });
-            //h3 a을 클릭하면 실행하시오
-            $("aside .wrap ul.list > li h3 a").click(function(){
-                // 마우스클릭한 요소 다음에 오는 것을 slideToggle하시오
-                $(this).parent().next().slideToggle();
-                $(this).parent().parent().siblings().children("div").slideUp();
-                return false;
-            });
+                    breakpoint: 769,
+                    settings: {
+                        infinite: true,
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 1000,
+                        speed:1000,
+                        dots:true,
+                        arrows:false
+                    }}
+                ]
+                });
 
-            $("aside").mouseleave(function(){
-                $("aside").removeClass("sliding");
+            $('.snsSlide').slick({
+                infinite: true,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                autoplay: true,
+                autoplaySpeed: 5000,
+                speed:4000,
+                dots:true,
+                arrows:true,
+                responsive: [
+                {
+                    breakpoint: 1201,
+                    settings: {
+                        infinite: true,
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 5000,
+                        speed:4000,
+                        dots:true,
+                        arrows:false,
+                        centerMode: true,
+                        centerPadding: '20px'
+                    }},
+                    {
+                    breakpoint: 769,
+                    settings: {
+                        infinite: true,
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 5000,
+                        speed:4000,
+                        dots:true,
+                        arrows:false,
+                        centerMode: true,
+                        centerPadding: '20px'
+                    }}]
+                });
+               
             });
-            //brand를 클릭하면 실행하시오
-            $("header .wrap nav>h2").click(function(){
-                //aside에 클래스를 토글하시오
+   </script>
+
+<!-- aside  -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("aside .wrap ul.list > li h3").hover(function(){
+            if($(window).width()>1200){
+                $("aside").addClass("sliding");
+                $(this).parent().siblings().find("ul.listsub").hide().removeClass("wide");
+                $(this).next().children("ul.listsub").show().addClass("wide");
+                $(this).addClass("current");// 노란표시
+                $(this).parent().siblings().children("h3").removeClass("current");
+            }
+            if($(window).width()<770){
+                $("aside").addClass("sliding");
+                $(this).next().show();
+                $(this).parent().siblings().children(".listsub").hide();
+                $(this).next().addClass("wide");
+                $(this).parent().siblings().children(".listsub").hide().removeClass("wide");
+                $(this).addClass("current");
+                $(this).parent().siblings().children("h3").removeClass("current");
+            }
+           
+        });
+        //h3을 클릭하면 실행하시오
+        $("aside .wrap ul.list > li h3 a").click(function(){
+            // 마우스 클릭한 요소 다음에 오는 것을 slideToggle 하시오
+            $(this).parent().next().slideToggle();
+            $(this).parent().parent().siblings().children("div").slideUp();
+            return false;
+        });
+
+
+
+         $("aside").mouseleave(function(){
+             $("aside").removeClass("sliding");
+         });
+    
+            // brand를 클릭하면 실행하시오
+            $(".right_menu").click(function(){
+                
+                // 클래스를 추가 하시오
                 $("aside").toggleClass("asideSliding");
-                $("header .wrap nav .wgnb").removeClass("wgnbShow");
-            });
 
-        });
-    </script>		
+                // 햄버거 닫기
+                $("header .wrap nav .wgnb").removeClass("wgnbShow");
+
+                // 햄버거 슬라이드 업
+                $("header .wrap nav .wgnb .wsub ul.sub1").slideUp();
+
+            });
+    });
+</script>
 
 
 </head>
 <body>
     
     <!-- 상단영역 -->
-    <header id="top"></header>
+   <header id="top">
+        <div class="wrap">
+            <nav>
+                <h1 class="h5">
+                    <a href="" class="a">하이트진로</a>
+                </h1>
+                <ul class="gnb">
+                    <li><a href="" class="a">COMPANY</a></li>
+                    <li><a href="" class="a">SOCIAL & MEDIA</a></li>
+                    <li><a href="" class="a">ESG</a></li>
+                    <li><a href="" class="a">CUSTOMER CENTER</a></li>
+                </ul>
+                <ul class="enb">
+                    <li><a href="" class="a">LOGIN</a></li>
+                    <li><a href="" class="a">JOIN</a></li>
+                    <li><a href="" class="a">RECRUIT</a></li>
+                    <li><a href="" class="a">LANGUAGE</a></li>
+                </ul>
+                <div class="wgnb hide">
+                    <div class="center">
+                        <div class="wsub">
+                            <h2 class="hide">COMPANY</h2>
+                            <ul class="sub1 text-center">
+                                <li><a href="">인사말</a></li>
+                                <li><a href="">경영철학</a></li>
+                                <li><a href="">연혁</a></li>
+                                <li>
+                                    <a href="">Introduction</a>
+                                    <ul class="sub2">
+                                        <li><a href="" class="block">CI</a></li>
+                                        <li><a href="" class="block">하이트진로 폰트</a></li>
+                                        <li><a href="" class="block">국제화</a></li>
+                                        <li><a href="" class="block">계열사안내</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="">Investment</a>
+                                    <ul class="sub2">
+                                        <li><a href="" class="block">IR정보</a></li>
+                                        <li><a href="" class="block">전자공고</a></li>
+                                        <li><a href="" class="block">공시</a></li>
+                                        <li><a href="" class="block">공시정보 관리규정</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="">Location</a>
+                                    <ul class="sub2">
+                                        <li><a href="" class="block">본사</a></li>
+                                        <li><a href="" class="block">지점</a></li>
+                                        <li><a href="" class="block">공장</a></li>
+                                        <li><a href="" class="block">계열사</a></li>
+                                        <li><a href="" class="block">해외법인</a></li>
+                                    </ul>
+                                </li> 
+                                <li>
+                                    <a href="">Factory</a>
+                                    <ul class="sub2">
+                                        <li><a href="" class="block">공장소개</a></li>
+                                        <li><a href="" class="block">견학신청</a></li>
+                                        <li><a href="" class="block">신청상태</a></li>
+                                    </ul>
+                                </li>      
+                                <li>
+                                    <a href="">Recruit</a>
+                                    <ul class="sub2">
+                                        <li><a href="" class="block">All about HITEJINRO</a></li>
+                                        <li><a href="" class="block">인재상</a></li>
+                                        <li><a href="" class="block">직무소개</a></li>
+                                        <li><a href="" class="block">채용절차</a></li>
+                                        <li><a href="" class="block">복리후생</a></li>
+                                        <li><a href="" class="block">채용공고</a></li>
+                                        <li><a href="" class="block">지원자도우미</a></li>
+                                    </ul>
+                                </li> 
+                                <li>
+                                    <a href="">Sports</a>
+                                    <ul class="sub2">
+                                        <li><a href="" class="block">골프선수</a></li>
+                                        <li><a href="" class="block">골프대회</a></li>
+                                        <li><a href="" class="block">기타 스포츠</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="wsub">
+                            <h2 class="hide">SOCIAL & MEDIA</h2>
+                            <ul class=" sub1 text-center">
+                                <li>
+                                    <a href="">Social board</a>
+                                    <div class="sub2">
+                                        <a href="">
+                                            당신의 인생을 더 큰 즐거움과 에너지로<span class="block"></span>
+                                            채우는 하이트진로의 다양한 소셜채널을<span class="block"></span>
+                                            지금 바로 확인해 보세요! 
+                                        </a>   
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="">Media</a>
+                                    <ul class="sub2 flex">
+                                        <li><a href="" class="block">공지사항</a></li>
+                                        <li><a href="" class="block">보도자료</a></li>
+                                        <li><a href="" class="block">광고 자료관</a></li>
+                                        <li><a href="" class="block">제품 자료관</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="">마케팅 성공사례</a>
+                                    <ul class="sub2 flex">
+                                        <li><a href="" class="block">하이트 성공사례</a></li>
+                                        <li><a href="" class="block">참이슬 성공신화</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="wsub">
+                            <h2 class="hide">ESG</h2>
+                            <ul class="sub1 text-center">
+                                <li>
+                                    <a href="">지속가능환경경영</a>
+                                    <ul class="sub2 flex">
+                                        <li><a href="" class="block">Introduction</a></li>
+                                        <li><a href="" class="block">2050 to zerO!</a></li>
+                                        <li><a href="" class="block">CSV</a></li>
+                                        <li><a href="" class="block">Management</a></li>
+                                    </ul> 
+                                </li>
+                                <li>
+                                    <a href="">식품안전경영</a>
+                                    <ul class="sub2 flex">
+                                        <li><a href="" class="block">경영방침</a></li>
+                                        <li><a href="" class="block">인증현황</a></li>
+                                        <li><a href="" class="block">Q-UP System</a></li>
+                                    </ul> 
+                                </li>
+                                <li>
+                                    <a href="">안전보건경영</a>
+                                    <ul class="sub2 flex">
+                                        <li><a href="" class="block">경영방침 및 추진과제</a></li>
+                                        <li><a href="" class="block">인증현황</a></li>
+                                        <li><a href="" class="block">안전보건활동 현황</a></li>
+                                    </ul> 
+                                </li>
+                                <li>
+                                    <a href="">CSR</a>
+                                    <ul class="sub2 flex">
+                                        <li><a href="" class="block">&Joy</a></li>
+                                        <li><a href="" class="block">분야별 사회공헌</a></li>
+                                        <li><a href="" class="block">꿈 바우처</a></li>
+                                    </ul> 
+                                </li>
+                                <li>
+                                    <a href="">Ethical Management</a>
+                                    <ul class="sub2 flex">
+                                        <li><a href="" class="block">동반성장</a></li>
+                                        <li><a href="" class="block">청음고(부정제보)</a></li>
+                                        <li><a href="" class="block">공정거래자율준수</a></li>
+                                    </ul> 
+                                </li>
+                                <li>
+                                    <a href="">기업지배구조</a>
+                                    <ul class="sub2 flex">
+                                        <li><a href="" class="block">이사회 현황</a></li>
+                                        <li><a href="" class="block">이사회 내 위원회 현황</a></li>
+                                        <li><a href="" class="block">정기 주주총회
+                                            의결권 행사 현황</a></li>
+                                        <li><a href="" class="block">ESG 평가 등급</a></li>
+                                    </ul> 
+                                </li>
+                                <li>
+                                    <a href="">지속가능경영보고서</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="wsub">
+                            <h2 class="hide">CUSTOMER CENTER</h2>
+                            <ul class="sub1 text-center">
+                                <li><a href="">FAQ</a></li>
+                                <li><a href="">Q&A</a></li>
+                                <li>
+                                    <a href="">주류상식 가이드</a>
+                                    <ul class="sub2 flex">
+                                        <li><a href="" class="block">맥주 가이드</a></li>
+                                        <li><a href="" class="block">소주 가이드</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">기타</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <a href="" class="ham hide">전체메뉴</a>
+            </nav>
+        </div>
+   </header>
    <!-- 타이틀영역 -->
    <div id="subtitle" class="height-full">
         <div class="titleani wrap height-full">
-            <img src="img/i1.jpg" alt="켈리 포스터">
-            <img src="img/i2.jpg" alt="테라 포스터">
-            <img src="img/i3.jpg" alt="참이슬 포스터">
-            <img src="img/i4.jpg" alt="진로 포스터">
-            <img src="img/i5.jpg" alt="필라이트 포스터">
-            <img src="img/i6.jpg" alt="일품진로 OAK43 포스터">
-            <img src="img/i7.jpg" alt="일품진로 포스터">
-            <img src="img/i8.jpg" alt="진로1924 포스터">
-            <img src="img/i9.jpg" alt="매화수 포스터">
-            <img src="img/i10.jpg" alt="에스라이트 포스터">
+            <img src="img/i1.png" alt="켈리 포스터">
+            <img src="img/i2.png" alt="테라 포스터">
+            <img src="img/i3.png" alt="참이슬 포스터">
+            <img src="img/i4.png" alt="진로 포스터">
+            <img src="img/i5.png" alt="필라이트 포스터">
+            <img src="img/i6.png" alt="일품진로 OAK43 포스터">
+            <img src="img/i7.png" alt="일품진로 포스터">
+            <img src="img/i8.png" alt="진로1924 포스터">
+            <img src="img/i9.png" alt="매화수 포스터">
+            <img src="img/i10.png" alt="에스라이트 포스터">
         </div>
    </div>
    <!-- 메인영역 -->
    <main>
         <section id="product">
-            <div class="wrap paddingT50 paddingB50">
+            <div class="wrap paddingT50 paddingB50 ">
                 <ol class="breadcrumb hide">
                     <li><a href="">home</a></li>
                     <li><a href="">회사소개</a></li>
@@ -462,8 +688,8 @@
             </div>
         </section>
         <section id="sns">
-            <div class="wrap paddingT50 paddingB50 paddingT50">
-                <h2 class="h3 text-center">최신 하이트진로 SNS</h2>
+            <div class="wrap paddingB50 paddingT50">
+                <h2 class="h2 text-center">최신 하이트진로 SNS</h2>
                 <ul class="snsani snsSlide">
                     <li class="sns1">
                         <a href="">
@@ -523,314 +749,297 @@
             </div>
         </section>
    </main>
-   <!-- 어사이드:브랜드 -->
-    <!-- 어사이드:브랜드 -->
-    <aside class="brand">
-        <div class="wrap">
-            <h2 class="h4">Brand</h2>
-            <ul class="list">
-                <li>
-                    <h3 class="h5"><a href="#" class="block">맥주</a></h3>
+  
+   <!-- 어사이드 - 브랜드 -->
+<aside class="brand">
+    <div class="wrap">
+        <h2 class="right_menu h4">BRAND</h2>
+        <ul class="list">
+            <li>
+                <h3 class="h5"><a href="#" class="block">맥주</a></h3>
+               <div>
+                    <ul class="listsub">
+                        <li><a href="" class="block">
+                            <img src="img/aside/1-1.png" alt="켈리"></a></li>
+                        <li><a href="" class="block">
+                            <img src="img/aside/1-2.png" alt="테라"></a></li>
+                        <li><a href="" class="block">
+                            <img src="img/aside/1-3.png" alt="하이트"></a></li>
+                        <li><a href="" class="block">
+                            <img src="img/aside/1-4.png" alt="에스라이트"></a></li>
+                        <li><a href="" class="block">
+                            <img src="img/aside/1-5.png" alt="스타우트"></a></li>
+                    </ul>
+                </div>    
+            </li>
+            <li>
+                <h3 class="h5"><a href="#" class="block">소주</a></h3>
+                <div>
+                    <ul class="listsub">
+                        <li><a href="" class="block">
+                            <img src="img/aside/2-1.png" alt="">참이슬 후레시</a></li>
+                        <li><a href="" class="block">
+                            <img src="img/aside/2-2.png" alt="">참이슬 오리지날</a></li>
+                        <li><a href="" class="block">
+                            <img src="img/aside/2-3.png" alt="">진로</a></li>
+                        <li><a href="" class="block">
+                            <img src="img/aside/2-4.png" alt="">진로 1924</a></li>
+                        <li><a href="" class="block">
+                            <img src="img/aside/2-5.png" alt="">일품진로</a></li>
+                        <li><a href="" class="block">
+                            <img src="img/aside/2-6.png" alt="">일품진로 오크</a></li>
+                        <li><a href="" class="block">
+                            <img src="img/aside/2-7.png" alt="">진로</a></li>
+                        <li><a href="" class="block">
+                            <img src="img/aside/2-8.png" alt="">참이슬</a></li>
+                    </ul>
+                </div>    
+            </li>
+            <li>
+                <h3 class="h5"><a href="#" class="block">위스키</a></h3>
+                <div>
+                    <ul class="listsub">
+                    <li><a href="" class="block">
+                        <img src="img/aside/3-1.png" alt="">1933</a></li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/3-2.png" alt="">커티사크</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <h3 class="h5"><a href="#" class="block">와인</a></h3>
                     <div>
                         <ul class="listsub">
-                            <li>
-                                <a href="#" class="block">
-                                    <img src="img/aside/1-1.png" alt="Kelly">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="block">
-                                    <img src="img/aside/1-2.png" alt="TERRA">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="block">
-                                    <img src="img/aside/1-3.png" alt="하이트">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="block">
-                                    <img src="img/aside/1-4.png" alt="S LIGHT">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="block">
-                                    <img src="img/aside/1-5.png" alt="스타우트">
-                                </a>
-                            </li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/4-1.png" alt="">진로</a></li>
                         </ul>
-                    </div>
+                    </div>    
+            </li>
+            <li>
+                <h3 class="h5"><a href="#" class="block">수입와인</a></h3>
+                    <div>
+                        <ul class="listsub">
+                    <li>
+                        <a href="" class="block">
+                        <img src="img/aside/5-1.png" alt="">프랑스</a>
+                    </li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/5-2.png" alt="">이탈리아</a>
+                    </li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/5-3.png" alt="">스페인</a>
+                    </li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/5-4.png" alt="">독일</a>
+                    </li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/5-5.png" alt="">미국</a>
+                    </li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/5-6.png" alt="">캐나다</a>
+                    </li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/5-7.png" alt="">칠레</a>
+                    </li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/5-8.png" alt="">아르헨티나</a>
+                    </li>
+                    <li>
+                        <a href="" class="block">
+                        <img src="img/aside/5-9.png" alt="">호주</a>
+                    </li>
+                    <li>
+                        <a href="" class="block">
+                        <img src="img/aside/5-9.png" alt="">뉴질랜드</a></li>
+                    
+                        </ul>
+                    </div>    
+            </li>
+            <li>
+                <h3 class="h5"><a href="#" class="block">사케</a></h3>
+                    <div>
+                        <ul class="listsub">
+                    <li><a href="" class="block">
+                        <img src="img/aside/6-1.png" alt="">
+                        키쿠스이</a>
+                    </li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/6-2.png" alt="">
+                        다카시미즈</a></li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/6-3.png" alt="">
+                        마보로시</a></li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/6-4.png" alt="">
+                        아마노토</a></li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/6-5.png" alt="">
+                        사토노호마레</a></li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/6-6.png" alt="">
+                        요네츠루</a></li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/6-7.png" alt="">
+                        카가미야마</a></li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/6-8.png" alt="">
+                        텐란잔</a></li>
+                        </ul>
+                    </div>    
+            </li>
+            <li>
+                <h3 class="h5"><a href="#" class="block">기타주류</a></h3>
+                    <div>
+                        <ul class="listsub">
+                    <li><a href="" class="block">
+                        <img src="img/aside/7-1.png" alt="">
+                        필라이트</a></li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/7-2.png" alt="">
+                        이슬톡톡</a></li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/7-3.png" alt="">
+                        아이셔에 이슬</a></li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/7-4.png" alt="">
+                        자몽에 이슬</a></li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/7-5.png" alt="">
+                        청포도에 이슬</a></li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/7-6.png" alt="">
+                        매화수</a></li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/7-7.png" alt="">
+                        진로와인</a></li>
+                        </ul>
+                    </div>    
+            </li>
+            <li>
+                <h3 class="h5"><a href="#" class="block">인터내셔널</a></h3>
+                    <div>
+                        <ul class="listsub">
+                    <li><a href="" class="block">
+                        <img src="img/aside/8-1.png" alt="">
+                        블랑</a></li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/8-2.png" alt="">
+                        서머스비</a></li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/8-3.png" alt="">
+                        폴라너</a></li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/8-4.png" alt="">
+                        기린이치방</a></li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/8-5.png" alt="">
+                        싱하</a></li>
+                    <li><a href="" class="block">
+                        <img src="img/aside/8-6.png" alt="">
+                        볼래스트포인트</a></li>
+                        </ul>
+                    </div>    
+            </li>
+        </ul>
+    </div>
+   </aside>
+
+   
+
+   <!-- 하단영역 -->
+   <footer>
+        <div class="wrap paddingT50 paddingB100">
+            <ul class="fnb flex">
+                <li class="flex">
+                    <h2><a href="">COMPANY</a></h2>
+                    <ul class="sublist1">
+                        <li><a href="">인사말</a></li>
+                        <li><a href="">경영철학</a></li>
+                        <li><a href="">연혁</a></li>
+                        <li><a href="">Introduction</a></li>
+                    </ul>
+                     
+                        <ul class="sublist2">
+                        <li><a href="">Investment</a></li>
+                        <li><a href="">Location</a></li>
+                        <li><a href="">Factory</a></li>
+                        <li><a href="">Recruit</a></li>
+                        <li><a href="">Sports</a></li>
+                    </ul>
+                        </li>
+                          <li>
+                    <h2><a href="">SOCIAL & MEDIA</a></h2>
+                    <ul class="sublist3">
+                        <li><a href="">Social board</a></li>
+                        <li><a href="">Media</a></li>
+                        <li><a href="">마케팅 성공사례</a></li>
+                    </ul>
                 </li>
                 <li>
-                    <h3 class="h5"><a href="#" class="block">소주</a></h3>
-                    <div>
-                        <ul class="listsub">
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/2-1.png" alt="참이슬 fresh">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/2-2.png" alt="참이슬 오리지널">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/2-3.png" alt="진로">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/2-4.png" alt="진로 1924 헤리티지">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/2-5.png" alt="일품진로">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/2-6.png" alt="일품진로 오크43">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/2-7.png" alt="일품진로 23년 산">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/2-8.png" alt="진로25">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/2-9.png" alt="참이슬 담금주">
-                            </a>
-                        </li>
-                        </ul>
-                    </div>
+                    <h2><a href="">ESG</a></h2>
+                    <ul class="sublist4">
+                        <li><a href="">지속가능환경경영</a></li>
+                        <li><a href="">식품안전경영</a></li>
+                        <li><a href="">안전보건경영</a></li>
+                        <li><a href="">CSR</a></li>
+                        <li><a href="">Ethical Managemaent</a></li>
+                        <li><a href="">기업지배구조</a></li>
+                        <li><a href="">지속가능경영보고서</a></li>
+                    </ul>
                 </li>
                 <li>
-                    <h3 class="h5"><a href="#" class="block">위스키</a></h3>
-                    <div>
-                        <ul class="listsub">
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/3-1.png" alt="더 클래스 1933">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/3-2.png" alt="커티삭">
-                            </a>
-                        </li>
-                        </ul>
-                    </div>
+                    <h2><a href="">CUSTOMER CENTER</a></h2>
+                    <ul class="sublist5">
+                        <li><a href="">FAQ</a></li>
+                        <li><a href="">Q & A</a></li>
+                        <li><a href="">주류상식 가이드</a></li>
+                        <li><a href="">기타</a></li>
+                    </ul>
                 </li>
                 <li>
-                    <h3 class="h5"><a href="#" class="block">와인</a></h3>
-                    <div>
-                        <ul class="listsub">
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/4-1.png" alt="진로 레드와인">
-                            </a>
-                        </li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <h3 class="h5"><a href="#" class="block">수입와인</a></h3>
-                    <div>
-                        <ul class="listsub">
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/5-1.png" alt="프랑스">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/5-2.png" alt="이탈리아">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/5-3.png" alt="스페인">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/5-4.png" alt="독일">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/5-5.png" alt="미국">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/5-6.png" alt="캐나다">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/5-7.png" alt="칠레">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/5-8.png" alt="아르헨티나">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/5-9.png" alt="호주">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/5-10.png" alt="뉴질랜드">
-                            </a>
-                        </li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <h3 class="h5"><a href="#" class="block">사케</a></h3>
-                    <div>
-                        <ul class="listsub">
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/6-1.png" alt="키쿠스이">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/6-2.png" alt="다카시미즈">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/6-3.png" alt="마보로시">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/6-4.png" alt="아마노토">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/6-5.png" alt="사토노호마레">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/6-6.png" alt="요네츠루">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/6-7.png" alt="카가미야마">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/6-8.png" alt="텐란잔">
-                            </a>
-                        </li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <h3 class="h5"><a href="#" class="block">기타주류</a></h3>
-                    <div>
-                        <ul class="listsub">
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/7-1.png" alt="필라이트">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/7-2.png" alt="이슬톡톡">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/7-3.png" alt="아이셔에이슬">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/7-4.png" alt="자몽에이슬">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/7-5.png" alt="청포도에이슬">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/7-6.png" alt="매화수">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/7-7.png" alt="진로와인">
-                            </a>
-                        </li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <h3 class="h5"><a href="#" class="block">인터내셔널</a></h3>
-                    <div>
-                        <ul class="listsub">
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/8-1.png" alt="Kronenbourg 1664">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/8-2.png" alt="SOMERSBY">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/8-3.png" alt="PAULANER">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/8-4.png" alt="KIRIN ICHIBAN">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/8-5.png" alt="SINGHA">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="block">
-                                <img src="img/aside/8-6.png" alt="BALLAST POINT">
-                            </a>
-                        </li>
-                        </ul>
-                    </div>
+                    <h2><a href="">BRAND</a></h2>
+                    <ul class="sublist6">
+                        <li><a href="">맥주</a></li>
+                        <li><a href="">소주</a></li>
+                        <li><a href="">위스키</a></li>
+                        <li><a href="">와인</a></li>
+                        <li><a href="">수입와인</a></li>
+                        <li><a href="">사케</a></li>
+                        <li><a href="">기타 주류</a></li>
+                        <li><a href="">인터내셔널</a></li>
+                    </ul>
                 </li>
             </ul>
+            <ul class="fnb2 flex">
+                <li><a href="">개인정보처리방침</a></li>
+                <li><a href="">회원이용약관</a></li>
+                <li><a href="">이메일무단수집거부</a></li>
+                <li><a href="">동반성장</a></li>
+                <li><a href="">청음고(부정제보)</a></li>
+                <li><a href="">공시정보 관리규정</a></li>
+                <li><a href="">공정거래자율준수</a></li>
+                <li>
+                    <select name="" id="first">
+                        <option value="">
+                            하이트진로 SNS
+                        </option>
+                    </select>
+                </li>
+                <li>
+                    <select name="" id="">
+                        <option value="">
+                            패밀리 사이트
+                        </option>
+                    </select>
+                </li>
+            </ul>
+            <address>(06075) 서울특별시 강남구 영동대로 714 하이트진로빌딩 / 대표전화 080-210-0150 / 사업자등록번호 214-81-00777</address>
+            <p class="p copyright">Copyright© 2016 HITEJINRO CO.LTD. ALL RIGHTS RESERVED.</p>
+            <a href="#top" class="btop">TOP</a>
         </div>
-    </aside>
-   <!-- 하단영역 -->
-  <footer></footer>
-
+       
+   </footer>
+   <p></p>
 
 </body>
 </html>
