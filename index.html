@@ -260,6 +260,11 @@
                 $("html,body").animate({scrollTop:0},1000);//문서스크롤 애니
             });
 
+
+             // 공통 html 연결
+            $("#top").load("header.html");  // 원하는 파일 경로를 삽입하면 된다   
+            $("footer").load("footer.html"); 
+
         });
     </script> 
     <!-- slick -->
@@ -830,11 +835,7 @@
    <!-- 하단영역 -->
   <footer></footer>
 
-<script>
-    // 공통 html 연결
-    $("#top").load("header.html");  // 원하는 파일 경로를 삽입하면 된다   
-    $("footer").load("footer.html"); 
-</script>
+
 </body>
 </html>
 </html>
