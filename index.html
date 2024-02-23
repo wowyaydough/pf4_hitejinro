@@ -42,8 +42,6 @@
                             $(this).children(".wtext").addClass("scaleX100");
                             // 마우스올린 li가 아닌 다른 형제요소들의 자식 wtext에 클래스를 없애라(scaleX100)
                             $(this).siblings().children("wtext").removeClass("scaleX100");
-
-
                         },
                         function(){ //mouseleave
                             $(this).children(".wtext").stop().fadeOut();//서서히 사라지게 하시오
@@ -213,21 +211,6 @@
                     if($(window).scrollTop()>$("#subtitle").height()+40){
                         //aside에 클래스를 붙이시오(slideHide)
                         $("aside").addClass("slideHide");
-
-                        // 탑 애니
-                        //탑요소에 클래스를 붙이시오(topFix)
-                        $("footer .btop").addClass("topFix");
-                    }else{ // 위 조건이 안맞으면(그렇치 않으면)
-                        $("aside").removeClass("slideHide");//aside태그에 클래스를 없애시오
-                        $("footer .btop").removeClass("topFix"); // 탑버튼에 클래스를 없애시오
-                    }
-                    
-                    // 하단 탑버튼 페이지와 같이 이동
-                    if($(window).scrollTop()>$("footer").offset().top-$(window).height()){
-                        $("footer .btop").removeClass("topFix").css("opacity",1);
-                    }
-
-                
                 });  
             
             // 대메뉴오버시 서브를 슬라이드 다운
@@ -511,8 +494,9 @@ $(document).ready(function(){
         mainani()
     });
 
-    //<!-- footer 영역 불러오기-->
+    //<!-- aside 영역 불러오기-->
     function asideani(){
+            //<!-- aside애니 -->
             $("aside .wrap ul.list > li h3").hover(function(){
                 if($(window).width()>1200){
                     $("aside").addClass("sliding");
@@ -542,10 +526,34 @@ $(document).ready(function(){
                 $("header .wrap nav .wgnb").removeClass("wgnbShow");
             });
         }
-        $("footer").load("footer.html"); 
+        $("aside").load("aside.html"),function(){
+            asideani()  
+        };
+
+    // footer 영역 불러오기
+        function topani(){
+            // 탑 애니
+            if($(window).scrollTop()>$("#subtitle").height()+40){
+                        $("aside").addClass("slideHide");
+                        $("footer .btop").addClass("topFix");
+            }
+            else{
+                        $("aside").removeClass("slideHide");
+                        $("footer .btop").removeClass("topFix");
+            }
+
+            // 하단 탑버튼 페이지와 같이 이동
+            if($(window).scrollTop()>$("footer").offset().top-$(window).height()){
+                $("footer .btop").removeClass("topFix").css("opacity",1);
+            }
+            }    
+            $("footer").load("footer.html"),function(){
+                topani()
+            };
+        }     
 });
     </script>
-    <!-- aside애니 -->
+
 		
 
 
