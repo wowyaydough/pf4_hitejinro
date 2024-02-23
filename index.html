@@ -276,34 +276,6 @@
     <!-- snsSlide / titleani -->
 	<script type="text/javascript">
 $(document).ready(function(){
-    $('.snsSlide').slick({
-            infinite: true,
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            speed:1000,
-            dots:true,
-            arrows:true,
-            responsive:[
-                {
-                breakpoint: 769,
-                settings: {
-                    infinite: true,
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    autoplay: true,
-                    autoplaySpeed: 2000,
-                    speed:1000,
-                    dots:true,
-                    arrows:false,
-                    centerMode: true,
-                    centerPadding: '20px'
-                }
-                }
-            ]   
-        });
-
     function titleani(){
         $('.titleani').slick({
             infinite: true,
@@ -348,7 +320,40 @@ $(document).ready(function(){
     $("#subtitle").load("subtitle.html",function(){
         titleani();
     });
-    
+
+    function snsSlide(){
+        $('.snsSlide').slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            speed:1000,
+            dots:true,
+            arrows:true,
+            responsive:[
+                {
+                breakpoint: 769,
+                settings: {
+                    infinite: true,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+                    speed:1000,
+                    dots:true,
+                    arrows:false,
+                    centerMode: true,
+                    centerPadding: '20px'
+                }
+                }
+            ]   
+        });
+    };
+    $("main").load("main.html",function(){
+        snsSlide()
+    });
+
 });
     </script>
     <!-- aside애니 -->
@@ -397,135 +402,8 @@ $(document).ready(function(){
         
    </div>
    <!-- 메인영역 -->
-   <main>
-        <section id="product">
-            <div class="wrap paddingT50 paddingB50">
-                <ol class="breadcrumb hide">
-                    <li><a href="">home</a></li>
-                    <li><a href="">회사소개</a></li>
-                    <li class="active">인사말</li>
-                </ol>
-                <h2 class="h3">사용자들이 가장 많이 찾으신 컨텐츠를 소개합니다___</h2>
-                <ul class="list">
-                    <li data-toggle="modal" data-target="#myModal">
-                        <figure><img src="img/1.jpg" alt=""></figure>
-                        <h3>1참이슬</h3>
-                        <p>국내유일 청정 대나무숯으로<br>4번 걸러 더 깨끗해진<br>참이슬 fresh</p>
-                        <a href="">LEARN MORE</a>
-                    </li>
-                    <li data-toggle="modal" data-target="#myModal2">
-                        <figure><img src="img/2.jpg" alt=""></figure>
-                        <h3>2TERRA</h3>
-                        <p>청정라거<br>시대개막<br>TERRA</p>
-                        <a href="">LEARN MORE</a>
-                    </li>
-                    <li>
-                        <figure><img src="img/3.jpg" alt=""></figure>
-                        <h3>3보도자료</h3>
-                        <p>언론 속 하이트진로의<br>다양한 소식을 알려 드립니다.</p>
-                        <a href="">LEARN MORE</a>
-                    </li>
-                    <li>
-                        <figure><img src="img/4.jpg" alt=""></figure>
-                        <h3>4Kelly</h3>
-                        <p>덴마크 프리미엄 맥아 100%<br>- 더블 숙성 라거 켈리</p>
-                        <a href="">LEARN MORE</a>
-                    </li>
-                    <li>
-                        <figure><img src="img/5.jpg" alt=""></figure>
-                        <h3>5사회공헌</h3>
-                        <p>하이트진로의 사회공헌 활동은<br>모두가 즐겁고 행복한 세상을<br>만들기 위한 실천입니다.</p>
-                        <a href="">LEARN MORE</a>
-                    </li>
-                    <li>
-                        <figure><img src="img/6.jpg" alt=""></figure>
-                        <h3>6hite</h3>
-                        <p>EXTRA COLD공법으로<br>더 차갑게 돌아왔다</p>
-                        <a href="">LEARN MORE</a>
-                    </li>
-                    <li>
-                        <figure><img src="img/7.jpg" alt=""></figure>
-                        <h3>7진로</h3>
-                        <p>진로 이즈 백!<br>소주의 원조, 진로가 돌아왔다</p>
-                        <a href="">LEARN MORE</a>
-                    </li>
-                    <li>
-                        <figure><img src="img/8.jpg" alt=""></figure>
-                        <h3>8온에어 TVCF</h3>
-                        <p>하이트진로의 최신 광고영상을 소개합니다.</p>
-                        <a href="">LEARN MORE</a>
-                    </li>
-                    <li>
-                        <figure><img src="img/9.jpg" alt=""></figure>
-                        <h3>9공장견학</h3>
-                        <p>하이트진로만의 최첨단 설비와<br>친환경이념이 담긴 생산공정을<br>직접 만나보세요.</p>
-                        <a href="">LEARN MORE</a>
-                    </li>
-                </ul>
-            </div>
-        </section>
-        <section id="sns">
-            <div class="wrap paddingT50 paddingB50 paddingT50">
-                <h2 class="h3 text-center">최신 하이트진로 SNS</h2>
-                <ul class="snsani snsSlide">
-                    <li class="sns1">
-                        <a href="">
-                            <h3 class="h4">FACEBOOK</h3>
-                            <p class="p">미숫가루 VS 수정과<br>@@할매 입맛 취저ㅋㅋ</p>
-                        </a>
-                    </li>
-                    <li class="sns2">
-                        <a href="">
-                            <h3 class="h4">INSTAGRAM</h3>
-                            <p class="p">여름 휴가 필수템으로 빠질 수 없는<br>귀여운 #이슬방울에디션 💧</p>
-                        </a>
-                    </li>
-                    <li class="sns3">
-                        <a href="">
-                            <h3 class="h4">BLOG</h3>
-                            <p class="p">참이슬과 떠나는 세계여행 15탄!<br>태국 똠얌꿍 레시피</p>
-                        </a>
-                    </li>
-                    <li class="sns4">
-                        <a href="">
-                            <h3 class="h4">FACEBOOK</h3>
-                            <p class="p">ㄹㅇ탕친자 인증.jpg<br>@@도전자 받음</p>
-                        </a>
-                    </li>
-                    <li class="sns5">
-                        <a href="">
-                            <h3 class="h4">INSTAGRAM</h3>
-                            <p class="p">울창한 나무 그늘 아래서<br>서늘한 바람이 느껴지는<br>이 계절의 찬란함</p>
-                        </a>
-                    </li>
-                    <li class="sns6">
-                        <a href="">
-                            <h3 class="h4">BLOG</h3>
-                            <p class="p">세상에 하나뿐인 필리 터프팅 러그 만들기</p>
-                        </a>
-                    </li>
-                    <li class="sns7">
-                        <a href="">
-                            <h3 class="h4">FACEBOOK</h3>
-                            <p class="p">여름의 끝이 보이는 말복!<br>뭘 먹어야 마지막까지 잘 이겨낼까?🤔</p>
-                        </a>
-                    </li>
-                    <li class="sns8">
-                        <a href="">
-                            <h3 class="h4">INSTAGRAM</h3>
-                            <p class="p">그림자를 뚫고 나오는 미모👥</p>
-                        </a>
-                    </li>
-                    <li class="sns9">
-                        <a href="">
-                            <h3 class="h4">BLOG</h3>
-                            <p class="p">초예술적 아트 콜라보!<br>진로X어반브레이크 두껍라운지<br>현장 스케치</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </section>
-   </main>
+  <main></main>
+  
    <!-- 어사이드:브랜드 -->
     <aside class="brand">
         <div class="wrap">
