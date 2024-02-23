@@ -272,19 +272,63 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <!-- snsSlide / titleani -->
 	<script type="text/javascript">
-        $(document).ready(function(){
-            $('.snsSlide').slick({
-                infinite: true,
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 2000,
-                speed:1000,
-                dots:true,
-                arrows:true,
-                responsive:[
-                    {
+$(document).ready(function(){
+    $('.snsSlide').slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            speed:1000,
+            dots:true,
+            arrows:true,
+            responsive:[
+                {
+                breakpoint: 769,
+                settings: {
+                    infinite: true,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+                    speed:1000,
+                    dots:true,
+                    arrows:false,
+                    centerMode: true,
+                    centerPadding: '20px'
+                }
+                }
+            ]   
+        });
+
+    function titleani(){
+        $('.titleani').slick({
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            speed:4000,
+            dots:true,
+            arrows:true,
+            responsive:[
+                {
+                    breakpoint: 1201,
+                    settings: {
+                        infinite: true,
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 2000,
+                        speed:1000,
+                        dots:true,
+                        arrows:false
+                    }
+                },
+                {
                     breakpoint: 769,
                     settings: {
                         infinite: true,
@@ -294,53 +338,18 @@
                         autoplaySpeed: 2000,
                         speed:1000,
                         dots:true,
-                        arrows:false,
-                        centerMode: true,
-                        centerPadding: '20px'
+                        arrows:false
                     }
-                    }
-                ]   
-            });
-
-            $('.titleani').slick({
-                infinite: true,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 3000,
-                speed:4000,
-                dots:true,
-                arrows:true,
-                responsive:[
-                    {
-                        breakpoint: 1201,
-                        settings: {
-                            infinite: true,
-                            slidesToShow: 2,
-                            slidesToScroll: 1,
-                            autoplay: true,
-                            autoplaySpeed: 2000,
-                            speed:1000,
-                            dots:true,
-                            arrows:false
-                        }
-                    },
-                    {
-                        breakpoint: 769,
-                        settings: {
-                            infinite: true,
-                            slidesToShow: 1,
-                            slidesToScroll: 1,
-                            autoplay: true,
-                            autoplaySpeed: 2000,
-                            speed:1000,
-                            dots:true,
-                            arrows:false
-                        }
-                    }
-                ]    
-            });
+                }
+                         ]    
         });
+    }
+
+    $("#subtitle").load("subtitle.html",function(){
+        titleani();
+    });
+    
+});
     </script>
     <!-- aside애니 -->
     <script type="text/javascript">
