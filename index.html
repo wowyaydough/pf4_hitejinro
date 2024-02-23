@@ -211,6 +211,7 @@
                     if($(window).scrollTop()>$("#subtitle").height()+40){
                         //aside에 클래스를 붙이시오(slideHide)
                         $("aside").addClass("slideHide");
+                    }
                 });  
             
             // 대메뉴오버시 서브를 슬라이드 다운
@@ -545,7 +546,6 @@ $(document).ready(function(){
             // 하단 탑버튼 페이지와 같이 이동
             if($(window).scrollTop()>$("footer").offset().top-$(window).height()){
                 $("footer .btop").removeClass("topFix").css("opacity",1);
-            }
             }    
             $("footer").load("footer.html"),function(){
                 topani()
