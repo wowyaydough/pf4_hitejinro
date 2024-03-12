@@ -83,6 +83,8 @@ body{
 }
 .h3{
   font-size: 25px;
+  font-weight: 300;
+  margin-bottom: 20px;
 }
 .h4{
   font-size: 25px;
@@ -97,11 +99,6 @@ body{
 }
 .block{
   display: block;
-}
-
-.line{
-  border-right:1px solid #eee;
-  height: 8px;
 }
 .more{
   border: 1px solid;
